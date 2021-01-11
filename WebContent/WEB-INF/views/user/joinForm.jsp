@@ -15,7 +15,7 @@
 	
 			<div id="header">
 				<h1>
-					<a href="">MySite</a>
+					<a href="/mysite2/main">MySite</a>
 				</h1>
 	
 				<ul>

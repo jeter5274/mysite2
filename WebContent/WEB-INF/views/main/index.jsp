@@ -13,7 +13,7 @@
 		<div id="wrap">
 	
 			<div id="header">
-				<h1><a href="">MySite</a></h1>
+				<h1><a href="/mysite2/main">MySite</a></h1>
 				
 				
 				<ul>
