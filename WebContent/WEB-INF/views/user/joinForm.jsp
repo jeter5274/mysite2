@@ -63,7 +63,7 @@
 	
 				<div id="user">
 					<div id="joinForm">
-						<form action="/mysite2/user" method="get">
+						<form action="/mysite2/user" method="post">
 	
 							<!-- 아이디 -->
 							<div class="form-group">

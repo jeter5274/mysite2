@@ -78,7 +78,7 @@
 					<% }%>
 					<p>
 					
-					<form action="/mysite2/guestbook" method="get">
+					<form action="/mysite2/guestbook" method="post">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
