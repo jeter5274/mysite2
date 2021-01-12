@@ -18,6 +18,9 @@ import com.javaex.vo.UserVo;
 public class UserController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("utf-8");
+		
 		System.out.println("UserController");
 		
 		String action = request.getParameter("action");
@@ -77,6 +80,45 @@ public class UserController extends HttpServlet {
 			session.removeAttribute("authUser");
 			session.invalidate();
 			
+			WebUtil.redirect(request, response, "/mysite2/main");
+			
+		}else if("modifyForm".equals(action)) {
+			System.out.println("수정 폼");
+			
+			//세션으로부터 로그인된 유저의 정보를 불러옴
+			HttpSession session = request.getSession();
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+			
+			//로그인된 유저의 no를 활용하여 유저정보를 불러옴
+			UserVo modiUser = uDao.getUser(authUser.getNo());
+			
+			//request의 어트리뷰트에 정보를 할당함
+			request.setAttribute("modiUser", modiUser);
+			
+			//포워드 -> modifyForm.jsp
+			WebUtil.forword(request, response, "/WEB-INF/views/user/modifyForm.jsp");
+		
+		}else if("modify".equals(action)) {
+			System.out.println("수정");
+		
+			//세션으로부터 로그인된 유저의 정보를 불러옴
+			HttpSession session = request.getSession();
+			UserVo authVo = (UserVo)session.getAttribute("authUser");
+
+			//파라미터 값(newPw/newName/gender)과 세션에 있는 값(no)으로 DB수정
+			uDao.update(authVo.getNo(), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("gender"));
+			
+			//로그인된 유저의 no를 활용하여 업데이트 된 유저정보를 불러옴
+			UserVo modiUser = uDao.getUser(authVo.getNo());
+			
+			//id와 변경할 pw를 통해 유저의 로그인 정보를 다시불러옴
+			UserVo updateVo = uDao.getUser(modiUser.getId(), modiUser.getPassword());
+			System.out.println(updateVo);
+			
+			//세션의 정보를 다시 저장함
+			session.setAttribute("authUser", updateVo);
+			
+			//메인으로 돌아가!
 			WebUtil.redirect(request, response, "/mysite2/main");
 		}
 		
