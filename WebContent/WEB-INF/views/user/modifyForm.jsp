@@ -84,6 +84,7 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<span class="text-large bold"><%=modiUser.getId() %></span>
+								<input type="hidden" name="id" value="<%=modiUser.getId() %>">
 							</div>
 	
 							<!-- 비밀번호 -->
@@ -132,7 +133,7 @@
 			                    <button type="submit" id="btn-submit">회원정보수정</button>
 			                </div>
 							
-							<input type="text" name="action" value="modify">
+							<input type="hidden" name="action" value="modify">
 						</form>
 					
 					

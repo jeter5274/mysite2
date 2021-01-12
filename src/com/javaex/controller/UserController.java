@@ -89,10 +89,10 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			
-			//로그인된 유저의 no를 활용하여 유저정보를 불러옴
+			//로그인된 유저의 no를 활용하여 유저정보 전체를 불러옴
 			UserVo modiUser = uDao.getUser(authUser.getNo());
 			
-			//request의 어트리뷰트에 정보를 할당함
+			//request의 어트리뷰트에 유저정보 전체를 할당함
 			request.setAttribute("modiUser", modiUser);
 			
 			//포워드 -> modifyForm.jsp
@@ -101,23 +101,20 @@ public class UserController extends HttpServlet {
 		}else if("modify".equals(action)) {
 			System.out.println("수정");
 		
-			//세션으로부터 로그인된 유저의 정보를 불러옴
+			//세션으로부터 로그인된 유저 no/name 정보를 불러옴
 			HttpSession session = request.getSession();
-
-			//로그인된 유저의 no를 활용하여 유저정보를 불러옴
-			UserVo authUser = uDao.getUser(((UserVo)session.getAttribute("authUser")).getNo());
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			
-			//로그인된 유저의 no/id 그리고 파라미터 값(newPw/newName/gender)으로 업데이트할 UserVo 생성 
-			UserVo modiUser = new UserVo(authUser.getNo(), authUser.getId(), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
+			//로그인된 유저의 no 그리고 파라미터 값(id/newPw/newName/gender)으로 업데이트할 UserVo 생성 
+			UserVo modiUser = new UserVo(authUser.getNo(), request.getParameter("id"), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
 			
 			//정보 수정
 			uDao.update(modiUser);
 			
-			//id와 파라미터의 newPw를 통해 유저의 로그인 정보를 다시불러옴
+			//id와 파라미터의 newPw를 통해 유저의 로그인 정보를 다시 불러옴
 			UserVo updateVo = uDao.getUser(modiUser.getId(), request.getParameter("newPw"));
-			System.out.println(updateVo);
 			
-			//세션의 정보를 다시 저장함
+			//세션에 정보를 업데이트
 			session.setAttribute("authUser", updateVo);
 			
 			//메인으로 돌아가!
