@@ -60,10 +60,10 @@ public class UserDao {
 	public int insert(UserVo uvo) {
 		
 		int count = 0;
+		connectDB();
 		
 		try {
-			connectDB();
-
+			
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query ="insert into users values (seq_user_no.nextval, ?, ?, ?, ?)";
 			//insert into users values (seq_user_id.nextval, id, password, name, gender);
@@ -86,10 +86,47 @@ public class UserDao {
 		return count;
 	}
 	
-	/*
-	try {
+	public UserVo getUser(String id, String pw) {
+		
+		UserVo userVo = null;
+		
 		connectDB();
-
+		
+		try {
+			
+			// 3. SQL문 준비 / 바인딩 / 실행
+			String query ="";
+			query += " select  no,";
+			query += "         name";
+			query += " from users";
+			query += " where id = ?";
+			query += " and password = ?";
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			rs = pstmt.executeQuery();
+			
+			// 4.결과처리
+			while(rs.next()) {
+				
+				userVo = new UserVo(rs.getInt("no"), rs.getString("name"));
+				
+			}
+		} catch (SQLException e) {
+		    System.out.println("error:" + e);
+		}
+		closeRs();
+		
+		return userVo;
+	}
+	/*
+	connectDB();
+	
+	try {
+	
 		// 3. SQL문 준비 / 바인딩 / 실행
 		String query ="";
 		query +="";
