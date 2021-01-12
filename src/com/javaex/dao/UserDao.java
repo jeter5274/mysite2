@@ -163,9 +163,7 @@ public class UserDao {
 		return userVo;
 	}
 	
-	
-	
-	public int update(int no, String pw, String name, String gender) {
+	public int update(UserVo userVo) {
 		int count = 0;
 		
 		connectDB();
@@ -182,14 +180,14 @@ public class UserDao {
 			
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setString(1, pw);
-			pstmt.setString(2, name);
-			pstmt.setString(3, gender);
-			pstmt.setInt(4, no);
+			pstmt.setString(1, userVo.getPassword());
+			pstmt.setString(2, userVo.getName());
+			pstmt.setString(3, userVo.getGender());
+			pstmt.setInt(4, userVo.getNo());
 			
 			count = pstmt.executeUpdate();
 			// 4.결과처리
-			System.out.println("userDao : "+count);
+			//System.out.println("userDao : "+count);
 		} catch (SQLException e) {
 		    System.out.println("error:" + e);
 		}

@@ -8,7 +8,7 @@ public class UserDaoTest {
 
 		//빨리 테스트 하는 용 - 지금은 필요 없어 보이나, 규모가 커지는 프로젝트시에는 용이함
 		UserDao userDao = new UserDao();
-		userDao.update(2, "1234", "관리자50", "female");
+		//userDao.update(2, "1234", "관리자50", "female");
 		
 		
 		/*

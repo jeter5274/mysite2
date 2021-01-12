@@ -101,27 +101,29 @@
 							<!-- //나이 -->
 							<div class="form-group">
 								<span class="form-text">성별</span> 
+								
 								<!-- 방법1 -->
+								<label for="rdo-male">남</label> 
+								<input type="radio" id="rdo-male" name="newGender" value="male" <%if("male".equals(modiUser.getGender())) {%>checked <%} %>> 
+								
+								<label for="rdo-female">여</label> 
+								<input type="radio" id="rdo-female" name="newGender" value="female" <%if("female".equals(modiUser.getGender())) {%>checked <%} %>>
+								
+								<%--
+								<!-- 방법2 -->
 								<%if("male".equals(modiUser.getGender())) {%>
 									<label for="rdo-male">남</label> 
-									<input type="radio" id="rdo-male" name="gender" value="male" checked> 
+									<input type="radio" id="rdo-male" name="gender2" value="male" checked> 
 									
 									<label for="rdo-female">여</label> 
-									<input type="radio" id="rdo-female" name="gender" value="female" > 
+									<input type="radio" id="rdo-female" name="gender2" value="female" > 
 								<%}else{ %>
 									<label for="rdo-male">남</label> 
-									<input type="radio" id="rdo-male" name="gender" value="male" > 
+									<input type="radio" id="rdo-male" name="gender2" value="male" > 
 									
 									<label for="rdo-female">여</label> 
 									<input type="radio" id="rdo-female" name="gender" value="female" checked>
 								<%} %>
-								<%--
-								<!-- 방법2 -->
-								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender2" value="male" <%if("male".equals(modiUser.getGender())) {%>checked <%} %>> 
-								
-								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="gender2" value="female" <%if("female".equals(modiUser.getGender())) {%>checked <%} %>>
 								 --%>
 							</div>
 	

@@ -103,16 +103,18 @@ public class UserController extends HttpServlet {
 		
 			//세션으로부터 로그인된 유저의 정보를 불러옴
 			HttpSession session = request.getSession();
-			UserVo authVo = (UserVo)session.getAttribute("authUser");
 
-			//파라미터 값(newPw/newName/gender)과 세션에 있는 값(no)으로 DB수정
-			uDao.update(authVo.getNo(), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("gender"));
+			//로그인된 유저의 no를 활용하여 유저정보를 불러옴
+			UserVo authUser = uDao.getUser(((UserVo)session.getAttribute("authUser")).getNo());
 			
-			//로그인된 유저의 no를 활용하여 업데이트 된 유저정보를 불러옴
-			UserVo modiUser = uDao.getUser(authVo.getNo());
+			//로그인된 유저의 no/id 그리고 파라미터 값(newPw/newName/gender)으로 업데이트할 UserVo 생성 
+			UserVo modiUser = new UserVo(authUser.getNo(), authUser.getId(), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
 			
-			//id와 pw를 통해 유저의 로그인 정보를 다시불러옴
-			UserVo updateVo = uDao.getUser(modiUser.getId(), modiUser.getPassword());
+			//정보 수정
+			uDao.update(modiUser);
+			
+			//id와 파라미터의 newPw를 통해 유저의 로그인 정보를 다시불러옴
+			UserVo updateVo = uDao.getUser(modiUser.getId(), request.getParameter("newPw"));
 			System.out.println(updateVo);
 			
 			//세션의 정보를 다시 저장함
