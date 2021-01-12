@@ -111,7 +111,7 @@ public class UserController extends HttpServlet {
 			//로그인된 유저의 no를 활용하여 업데이트 된 유저정보를 불러옴
 			UserVo modiUser = uDao.getUser(authVo.getNo());
 			
-			//id와 변경할 pw를 통해 유저의 로그인 정보를 다시불러옴
+			//id와 pw를 통해 유저의 로그인 정보를 다시불러옴
 			UserVo updateVo = uDao.getUser(modiUser.getId(), modiUser.getPassword());
 			System.out.println(updateVo);
 			
