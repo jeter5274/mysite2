@@ -21,14 +21,8 @@
 			<!--  header & navi 공통으로 옮겼음 -->
 			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	
-			<div id="aside">
-				<h2>방명록</h2>
-				<ul>
-					<li>일반방명록</li>
-					<li>ajax방명록</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+			<!--  guestbookAside 공통으로 옮겼음 -->
+			<jsp:include page="/WEB-INF/views/include/guestbookAside.jsp"></jsp:include>
 	
 			<div id="content">
 				

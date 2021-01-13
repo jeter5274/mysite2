@@ -22,15 +22,8 @@
 			<!--  header & navi 공통으로 옮겼음 -->
 			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	
-			<div id="aside">
-				<h2>회원</h2>
-				<ul>
-					<li>회원정보</li>
-					<li>로그인</li>
-					<li>회원가입</li>
-				</ul>
-			</div>
-			<!-- //aside -->
+			<!--  userAside 공통으로 옮겼음 -->
+			<jsp:include page="/WEB-INF/views/include/userAside.jsp"></jsp:include>
 	
 			<div id="content">
 				
