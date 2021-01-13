@@ -11,6 +11,14 @@ public class UserVo {
 		this.no = no;
 		this.name = name;
 	}
+	//회원정보수정
+	public UserVo(int no, String password, String name, String gender) {
+		this.no = no;
+		this.password = password;
+		this.name = name;
+		this.gender = gender;
+	}
+	//로그인
 	public UserVo(String id, String password, String name, String gender) {
 		this.id = id;
 		this.password = password;

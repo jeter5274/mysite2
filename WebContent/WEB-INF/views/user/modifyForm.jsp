@@ -84,7 +84,7 @@
 							<div class="form-group">
 								<label class="form-text" for="input-uid">아이디</label> 
 								<span class="text-large bold"><%=modiUser.getId() %></span>
-								<input type="hidden" name="id" value="<%=modiUser.getId() %>">
+								<!-- 방법2 <input type="hidden" name="id" value="<%=modiUser.getId() %>"> -->
 							</div>
 	
 							<!-- 비밀번호 -->

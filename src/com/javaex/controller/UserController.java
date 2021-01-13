@@ -108,17 +108,29 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
 			
+			//방법1 : 로그인된 유저의 no 그리고 파라미터 값(newPw/newName/gender)으로 업데이트할 UserVo 생성 
+			UserVo modiUser = new UserVo(authUser.getNo(), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
+			
+			/*
+			//방법2
 			//로그인된 유저의 no 그리고 파라미터 값(id/newPw/newName/gender)으로 업데이트할 UserVo 생성 
-			UserVo modiUser = new UserVo(authUser.getNo(), request.getParameter("id"), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
+			//UserVo modiUser = new UserVo(authUser.getNo(), request.getParameter("id"), request.getParameter("newPw"), request.getParameter("newName"), request.getParameter("newGender"));
+			*/
 			
 			//정보 수정
 			uDao.update(modiUser);
 			
+			//방법1 : 세션의 name값을 변경
+			authUser.setName(request.getParameter("newName"));
+			
+			/*
+			//방법2
 			//업데이트한 유저정보(modiUser)의 id/pw를 통해 유저의 로그인 정보를 다시 불러옴
 			UserVo updateVo = uDao.getUser(modiUser.getId(), modiUser.getPassword());
 			
 			//세션에 정보를 업데이트
 			session.setAttribute("authUser", updateVo);
+			*/
 			
 			//메인으로 돌아가!
 			WebUtil.redirect(request, response, "/mysite2/main");
