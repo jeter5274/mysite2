@@ -12,29 +12,8 @@
 	<body>
 		<div id="wrap">
 	
-			<div id="header">
-				<h1>
-					<a href="/mysite2/main">MySite</a>
-				</h1>
-	
-				<ul>
-					<li><a href="/mysite2/user?action=loginForm">로그인</a></li>
-					<li><a href="/mysite2/user?action=joinForm">회원가입</a></li>
-				</ul>
-				
-			</div>
-			<!-- //header -->
-	
-			<div id="nav">
-				<ul>
-					<li><a href="">방명록</a></li>
-					<li><a href="">갤러리</a></li>
-					<li><a href="">게시판</a></li>
-					<li><a href="">입사지원서</a></li>
-				</ul>
-				<div class="clear"></div>
-			</div>
-			<!-- //nav -->
+			<!--  header & navi 공통으로 옮겼음 -->
+			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	
 			<div id="aside">
 				<h2>회원</h2>
@@ -76,14 +55,13 @@
 								<label class="form-text" for="input-pass">비밀번호</label> 
 								<input type="text" id="input-pass" name="pw" value="" placeholder="비밀번호를 입력하세요"	>
 							</div>
-	
 							
 							<!-- 버튼영역 -->
 			                <div class="button-area">
 			                    <button type="submit" id="btn-submit">로그인</button>
 			                </div>
 							
-							<input type="text" name="action" value="login">
+							<input type="hidden" name="action" value="login">
 						</form>
 					</div>
 					<!-- //loginForm -->
@@ -93,10 +71,7 @@
 			<!-- //content  -->
 			<div class="clear"></div>
 	
-			<div id="footer">
-				Copyright ⓒ 2020 황일영. All right reserved
-			</div>
-			<!-- //footer -->
+			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	
 		</div>
 		<!-- //wrap -->
