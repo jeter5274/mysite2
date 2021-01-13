@@ -100,7 +100,10 @@ public class UserController extends HttpServlet {
 		
 		}else if("modify".equals(action)) {
 			System.out.println("수정");
-		
+			/*
+			세션에 유저 정보(id/pw/gender)를 추가하는 방법이 있지만 메모리가 무거워 짐
+			 */
+			
 			//세션으로부터 로그인된 유저 no/name 정보를 불러옴
 			HttpSession session = request.getSession();
 			UserVo authUser = (UserVo)session.getAttribute("authUser");
@@ -111,8 +114,8 @@ public class UserController extends HttpServlet {
 			//정보 수정
 			uDao.update(modiUser);
 			
-			//id와 파라미터의 newPw를 통해 유저의 로그인 정보를 다시 불러옴
-			UserVo updateVo = uDao.getUser(modiUser.getId(), request.getParameter("newPw"));
+			//업데이트한 유저정보(modiUser)의 id/pw를 통해 유저의 로그인 정보를 다시 불러옴
+			UserVo updateVo = uDao.getUser(modiUser.getId(), modiUser.getPassword());
 			
 			//세션에 정보를 업데이트
 			session.setAttribute("authUser", updateVo);
