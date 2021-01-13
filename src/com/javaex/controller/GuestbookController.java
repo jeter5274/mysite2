@@ -50,11 +50,9 @@ public class GuestbookController extends HttpServlet {
 			int result = gbDao.delete(Integer.parseInt(request.getParameter("no")), request.getParameter("pass"));
 			
 			if(result == 0) {	
-				//삭제가 실패할 경우 어트리뷰트에 결과 값을 저장
-				request.setAttribute("delResult", result);
-				
-				//포워드
-				WebUtil.forword(request, response, "/WEB-INF/views/guestbook/deleteForm.jsp");	
+				//삭제가 실패할 경우 파라미터에 결과를 저장하여 리다이렉트
+				WebUtil.redirect(request, response, "/mysite2/guestbook?action=dform&result=fail&no="+request.getParameter("no"));
+		
 			}else {
 			//리다이렉트
 			WebUtil.redirect(request, response, "/mysite2/guestbook");
