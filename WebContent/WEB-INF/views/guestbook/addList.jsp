@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@ page import = "java.util.List" %>
-<%@ page import = "com.javaex.vo.GuestbookVo" %>
-<%
-	//어트리뷰트에서 방명록 리스트를 불러옴
-	List<GuestbookVo> gbList = (List<GuestbookVo>)request.getAttribute("GuestbookList");
-%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -71,7 +66,8 @@
 						<input type="hidden" name="action" value="add">
 						
 					</form>	
-					<%for(int i=0;i<gbList.size();i++){ %>
+					
+					<c:forEach items="${GuestbookList}" var="gl">	<%-- ${GuestbookList} == ${requestScope.GuestbookList} --%>
 						<table class="guestRead">
 							<colgroup>
 								<col style="width: 10%;">
@@ -80,16 +76,16 @@
 								<col style="width: 10%;">
 							</colgroup>
 							<tr>
-								<td><%=gbList.get(i).getNo() %></td>
-								<td><%=gbList.get(i).getName() %></td>
-								<td><%=gbList.get(i).getReg_date() %></td>
-								<td><a href="/mysite2/guestbook?action=dform&no=<%=gbList.get(i).getNo() %>">[삭제]</a></td>
+								<td>${gl.no}</td>
+								<td>${gl.name}</td>
+								<td>${gl.reg_date}</td>
+								<td><a href="/mysite2/guestbook?action=dform&no=${gl.no}">[삭제]</a></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left"><%=gbList.get(i).getContent() %></td>
+								<td colspan=4 class="text-left">${gl.content}</td>
 							</tr>
 						</table>
-					<%} %>
+					</c:forEach>
 					<!-- //guestRead -->
 					
 				</div>
