@@ -77,6 +77,7 @@ public class BoardDao {
 			query +="         us.name";
 			query +=" from board bo left join users us";
 			query +=" on bo.user_no = us.no";
+			query +=" order by bo.no asc";
 			
 			pstmt = conn.prepareStatement(query);
 			

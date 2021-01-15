@@ -60,7 +60,7 @@
 							<tbody>
 								<c:forEach items="${boardList}" var="ul">
 								<tr>
-									<td>${ul.no }</td>
+									<td>${num = num+1}</td>	<!-- 게시글 번호에 빈 번호가 없도록 출력 -->
 									<td class="text-left"><a href="/mysite2/board?action=read&no=${ul.no}">${ul.title}</a></td>
 									<td>${ul.writer}</td>
 									<td>${ul.hit}</td>
