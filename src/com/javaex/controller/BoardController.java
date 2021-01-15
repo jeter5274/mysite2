@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.javaex.dao.BoardDao;
 import com.javaex.util.WebUtil;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
@@ -44,13 +45,12 @@ public class BoardController extends HttpServlet {
 			WebUtil.redirect(request, response, "/mysite2/board");
 			
 		}else if("wForm".equals(action)) {
-			//비로그인 상태의 접속시도 차단
 			System.out.println("글 작성");
 			
-			WebUtil.forword(request, response, "/WEB-INF/views/board/writeForm.jsp");;
+			//비로그인 상태의 접속시도 차단
+			WebUtil.chkLogin(request, response, "/WEB-INF/views/board/writeForm.jsp");
 			
 		}else if("mForm".equals(action)) {
-			//비로그인 상태의 접속시도 차단
 			
 			System.out.println("게시글 수정폼");
 			
@@ -58,24 +58,26 @@ public class BoardController extends HttpServlet {
 			
 			request.setAttribute("post", post);
 			
-			WebUtil.forword(request, response, "/WEB-INF/views/board/modifyForm.jsp");
+			//비로그인 상태의 접속시도 차단
+			WebUtil.chkLogin(request, response, "/WEB-INF/views/board/modifyForm.jsp");
 			
 		}else if("insert".equals(action)) {
-			//비로그인 상태의 접속시도 차단
+
 			System.out.println("글 등록");
 			
 			HttpSession session = request.getSession();
+		
+			BoardVo insertPost = new BoardVo(request.getParameter("title"), request.getParameter("content"), ((UserVo)session.getAttribute("authUser")).getNo());
 			
-			BoardVo insertPost = new BoardVo(request.getParameter("title"), request.getParameter("content"), (int)session.getAttribute("no"));
 			bDao.insert(insertPost);
 			
 			WebUtil.redirect(request, response, "/mysite2/board");
 			
 		}else if("modify".equals(action)) {
-			//비로그인 상태의 접속시도 차단
 			System.out.println("게시글 수정");
 			
 			BoardVo modiPost = new BoardVo(Integer.parseInt(request.getParameter("no")), request.getParameter("title"), request.getParameter("content"));
+			
 			bDao.update(modiPost);
 
 			WebUtil.redirect(request, response, "/mysite2/board");
