@@ -58,8 +58,11 @@ public class BoardDao {
 		}
 	}
 	
-
 	public List<BoardVo> getlist() {
+		return getlist(" ");
+	}
+	
+	public List<BoardVo> getlist(String keyword) {
 		
 		List<BoardVo> boardList = new ArrayList<BoardVo>();
 		BoardVo boardVo;
@@ -77,9 +80,21 @@ public class BoardDao {
 			query +="         us.name";
 			query +=" from board bo left join users us";
 			query +=" on bo.user_no = us.no";
-			query +=" order by bo.no asc";
+			if(" ".equals(keyword)) {
+				query +=" order by bo.no asc";
+				pstmt = conn.prepareStatement(query);
+			}else {
+				keyword = "%" +keyword+ "%";
+				
+				query +=" where bo.title like ?";
+				query +=" or us.name like ?";
+				query +=" order by bo.no asc";
 			
-			pstmt = conn.prepareStatement(query);
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, keyword);
+				pstmt.setString(2, keyword);
+			}
+			
 			
 			rs = pstmt.executeQuery();
 			

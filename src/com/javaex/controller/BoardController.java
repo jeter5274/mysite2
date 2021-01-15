@@ -95,7 +95,13 @@ public class BoardController extends HttpServlet {
 		}else {
 			System.out.println("게시판 목록");
 			
-			List<BoardVo> bList = bDao.getlist();
+			List<BoardVo> bList;
+			
+			if("search".equals(action)) {
+				bList = bDao.getlist(request.getParameter("keyword"));
+			}else {
+				bList = bDao.getlist();
+			}
 			
 			request.setAttribute("boardList", bList);
 			
