@@ -99,9 +99,6 @@ public class BoardDao {
 	public BoardVo getPost(int no) {
 		BoardVo post=null;
 		
-		//내가 내 글을 볼 때 조회수 조정 방법 고민
-		hitUpdate(no);
-		
 		connectDB();
 		
 		try {
@@ -138,8 +135,9 @@ public class BoardDao {
 		
 	}
 	
-	private int hitUpdate(int no) {
-		//조회수를 조작할 수 없도록 숨김
+	public int Update(int no) {
+		//조회수 +1
+
 		int count = 0;
 
 		connectDB();
@@ -165,6 +163,8 @@ public class BoardDao {
 	}
 	
 	public int update(BoardVo bVo) {
+		//게시글 수정
+		
 		int count = 0;
 		
 		connectDB();

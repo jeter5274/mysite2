@@ -30,7 +30,17 @@ public class BoardController extends HttpServlet {
 		
 		if("read".equals(action)) {
 			System.out.println("게시글 읽기");
-			
+						
+			HttpSession session = request.getSession();
+			System.out.println(session.getId());
+			UserVo authUser = (UserVo)session.getAttribute("authUser");
+				
+			//본인의 글을 읽으면 조회수가 늘어나지 않음
+			//로그인이 안되어있거나, 작성자가 아니면 조회수 +1
+			if(authUser == null || bDao.getPost(Integer.parseInt(request.getParameter("no"))).getUserNo() != authUser.getNo()) {
+				bDao.Update(Integer.parseInt(request.getParameter("no"))); //조회수 +1	
+			}
+						
 			BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")));
 			
 			request.setAttribute("post", post);
