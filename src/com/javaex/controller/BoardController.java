@@ -41,7 +41,7 @@ public class BoardController extends HttpServlet {
 				bDao.Update(Integer.parseInt(request.getParameter("no"))); //조회수 +1	
 			}
 						
-			BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")));
+			BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")), action);
 			
 			request.setAttribute("post", post);
 			

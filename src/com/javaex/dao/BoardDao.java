@@ -97,7 +97,20 @@ public class BoardDao {
 	}
 	
 	public BoardVo getPost(int no) {
+		
+		return getPost(no, "");
+	}
+	
+	public BoardVo getPost(int no, String action) {
 		BoardVo post=null;
+		String contentQuery;
+		
+		//게시글 읽을 시, 엔터 적용
+		if("read".equals(action)) {
+			contentQuery = " replace(bo.content, chr(10), '<br>') content,";
+		}else {
+			contentQuery = " bo.content,";
+		}
 		
 		connectDB();
 		
@@ -106,7 +119,7 @@ public class BoardDao {
 			String query ="";
 			query +=" select  bo.no,";
 			query +="         bo.title,";
-			query +="         bo.content,";
+			query += contentQuery;
 			query +="         bo.hit,";
 			query +="         to_char(bo.reg_date, 'YYYY-MM-DD HH24:MI') reg_date,";
 			query +="         bo.user_no,";

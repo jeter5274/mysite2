@@ -68,9 +68,8 @@
 						
 							<!-- 내용 -->
 							<div class="form-group">
-								<textarea id="txt-content" name="content">
-								${post.content}
-								</textarea>
+								<!-- textarea 태그 사이를 개행문자로 정리하면 앞 뒤로 공백이 생김 -->
+								<textarea id="txt-content" name="content">${post.content}</textarea>
 							</div>
 							
 							<a id="btn_cancel" href="/mysite2/board">취소</a>
