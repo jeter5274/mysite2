@@ -167,7 +167,7 @@ public class BoardDao {
 		
 	}
 	
-	public int Update(int no) {
+	public int hitUpdate(int no) {
 		//조회수 +1
 
 		int count = 0;
