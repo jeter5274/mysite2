@@ -1,6 +1,11 @@
 package com.javaex.util;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +18,7 @@ import com.javaex.vo.UserVo;
 public class WebUtil {
 
 	//필드
+	
 	//생성자
 	//메소드 - getter/setter
 	//메소드 - 일반
@@ -42,4 +48,25 @@ public class WebUtil {
 			WebUtil.forword(request, response, path);
 		}
 	}
+	
+	//jdbcConnect -> Dao가 많아 질 수록 DB의 설정 수정시 번거로움이 생길 것 같아 WebUtil에서 사용
+	public static Connection jdbcConnect() {
+		
+		Connection conn = null;
+		
+		try {
+			// 1. JDBC 드라이버 (Oracle) 로딩
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// 2. Connection 얻어오기
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "webdb", "webdb");
+
+		} catch (ClassNotFoundException e) {
+		    System.out.println("error: 드라이버 로딩 실패 - " + e);
+		} catch (SQLException e) {
+		    System.out.println("error:" + e);
+		} 
+		
+		return conn;
+	}
+	//jdbcClose
 }

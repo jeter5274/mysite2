@@ -38,7 +38,9 @@ public class BoardController extends HttpServlet {
 			//본인의 글을 읽으면 조회수가 늘어나지 않음
 			//로그인이 안되어있거나, 작성자가 아니면 조회수 +1
 			if(authUser == null || bDao.getPost(Integer.parseInt(request.getParameter("no"))).getUserNo() != authUser.getNo()) {
-				bDao.Update(Integer.parseInt(request.getParameter("no"))); //조회수 +1	
+				bDao.Update(Integer.parseInt(request.getParameter("no"))); //조회수 +1
+				
+				//세션정보를 활용해서 세션당 조회수1번을 적용할 수 있나 고민해보기
 			}
 						
 			BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")), action);

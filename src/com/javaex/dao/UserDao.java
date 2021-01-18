@@ -1,31 +1,32 @@
 package com.javaex.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.javaex.util.WebUtil;
 import com.javaex.vo.UserVo;
 
 public class UserDao {
 
 	//필드
+	/* jdbc 연결을 WebUitl로 사용
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	private String id = "webdb" , pw = "webdb";
-		
+	*/
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
-	//생성자
+	//생성자 - 기본생성자 활용 (생략)
 	
-	//메소드 getter/setter
+	//메소드 getter/setter 필요없음
 	
-	//메소드 일반
-
-	// 0. import java.sql.*;
+	//메소드 일반		
+	
+	/* jdbc 연결을 WebUitl로 사용
 	private void connectDB() {
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
@@ -39,6 +40,7 @@ public class UserDao {
 		    System.out.println("error:" + e);
 		} 
 	}
+	*/
 		
 	private void closeRs() {
 		// 5. 자원정리
@@ -60,7 +62,8 @@ public class UserDao {
 	public int insert(UserVo uvo) {
 		
 		int count = 0;
-		connectDB();
+		
+		conn = WebUtil.jdbcConnect();
 		
 		try {
 			
@@ -91,7 +94,7 @@ public class UserDao {
 		
 		UserVo userVo = null;
 		
-		connectDB();
+		conn = WebUtil.jdbcConnect();
 		
 		try {
 			
@@ -129,7 +132,7 @@ public class UserDao {
 		
 		UserVo userVo = null;
 		
-		connectDB();
+		conn = WebUtil.jdbcConnect();
 		
 		try {
 			
@@ -166,7 +169,7 @@ public class UserDao {
 	public int update(UserVo userVo) {
 		int count = 0;
 		
-		connectDB();
+		conn = WebUtil.jdbcConnect();
 		
 		try {
 		
@@ -195,24 +198,4 @@ public class UserDao {
 		
 		return count;
 	}
-	/*
-	connectDB();
-	
-	try {
-	
-		// 3. SQL문 준비 / 바인딩 / 실행
-		String query ="";
-		query +="";
-		query +="";
-		
-		pstmt = conn.prepareStatement(query);
-
-		// 4.결과처리
-
-	} catch (SQLException e) {
-	    System.out.println("error:" + e);
-	}
-	closeRs();
-	*/
-
 }
