@@ -71,7 +71,7 @@
 							</div>
 							
 							<c:if test="${post.userNo == authUser.no}">
-								<a id="btn_modify" href="/mysite2/board?action=mForm&no=${post.no}&hit=no">수정</a>
+								<a id="btn_modify" href="/mysite2/board?action=mForm&no=${post.no}">수정</a>
 							</c:if>
 							<a id="btn_modify" href="/mysite2/board">목록</a>
 							
