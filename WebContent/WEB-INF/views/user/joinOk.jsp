@@ -15,10 +15,10 @@
 		<div id="wrap">
 	
 			<!--  header & navi 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+				
 			<!--  userAside 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/userAside.jsp"></jsp:include>
+			<c:import url="/WEB-INF/views/include/userAside.jsp"></c:import>
 	
 			<div id="content">
 				
@@ -52,7 +52,7 @@
 			<!-- //content  -->
 			<div class="clear"></div>
 	
-			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	
 		</div>
 		<!-- //wrap -->

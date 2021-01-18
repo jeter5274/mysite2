@@ -15,11 +15,11 @@
 		<div id="wrap">
 	
 			<!--  header & navi 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
-	
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+				
 			<!--  guestbookAside 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/guestbookAside.jsp"></jsp:include>
-	
+			<c:import url="/WEB-INF/views/include/guestbookAside.jsp"></c:import>
+			
 			<div id="content">
 				
 				<div id="content-head">
@@ -95,7 +95,7 @@
 			<div class="clear"></div>
 			
 			<!--  footer 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	
 		</div>
 		<!-- //wrap -->

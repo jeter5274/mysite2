@@ -14,7 +14,7 @@
 		<div id="wrap">
 	
 			<!--  header & navi 공통으로 옮겼음 -->
-			<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+			<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 			
 			<!-- aside없음 -->
 	
@@ -56,7 +56,7 @@
 			<!-- //full-content -->
 			<div class="clear"></div>
 			
-			<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+			<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	
 		</div>
 		<!-- //wrap -->
