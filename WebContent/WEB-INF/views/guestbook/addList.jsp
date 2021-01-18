@@ -67,7 +67,7 @@
 						
 					</form>	
 					
-					<c:forEach items="${GuestbookList}" var="gl">	<%-- ${GuestbookList} == ${requestScope.GuestbookList} --%>
+					<c:forEach items="${GuestbookList}" var="gbVo">	<%-- ${GuestbookList} == ${requestScope.GuestbookList} --%>
 						<table class="guestRead">
 							<colgroup>
 								<col style="width: 10%;">
@@ -76,13 +76,13 @@
 								<col style="width: 10%;">
 							</colgroup>
 							<tr>
-								<td>${gl.no}</td>
-								<td>${gl.name}</td>
-								<td>${gl.reg_date}</td>
-								<td><a href="/mysite2/guestbook?action=dform&no=${gl.no}">[삭제]</a></td>
+								<td>${gbVo.no}</td>
+								<td>${gbVo.name}</td>
+								<td>${gbVo.reg_date}</td>
+								<td><a href="/mysite2/guestbook?action=dform&no=${gbVo.no}">[삭제]</a></td>
 							</tr>
 							<tr>
-								<td colspan=4 class="text-left">${gl.content}</td>
+								<td colspan=4 class="text-left">${gbVo.content}</td>
 							</tr>
 						</table>
 					</c:forEach>
