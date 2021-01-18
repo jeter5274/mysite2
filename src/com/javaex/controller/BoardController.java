@@ -66,12 +66,22 @@ public class BoardController extends HttpServlet {
 			
 			System.out.println("게시글 수정폼");
 			
-			BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")));
+			HttpSession session = request.getSession();
 			
-			request.setAttribute("post", post);
+			//본인의 게시글이 맞는지 확인
+			if(Integer.parseInt(request.getParameter("no")) == ((UserVo)session.getAttribute("authUser")).getNo()) {
 			
-			//비로그인 상태의 접속시도 차단
-			WebUtil.chkLogin(request, response, "/WEB-INF/views/board/modifyForm.jsp");
+				BoardVo post = bDao.getPost(Integer.parseInt(request.getParameter("no")));
+				
+				request.setAttribute("post", post);
+				
+				WebUtil.forword(request, response, "/WEB-INF/views/board/modifyForm.jsp");
+				
+			}else {
+				
+				WebUtil.redirect(request, response, "/mysite2/board");
+			}
+			
 			
 		}else if("insert".equals(action)) {
 
