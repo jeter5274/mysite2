@@ -2,8 +2,8 @@ package com.javaex.vo;
 
 public class UserVo {
 	//필드
-	int no;
-	String id, password, name, gender;
+	private int no;
+	private String id, password, name, gender;
 	
 	//생성자
 	public UserVo() {}

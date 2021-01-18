@@ -3,12 +3,12 @@ package com.javaex.vo;
 public class BoardVo {
 
 	//필드
-	int no;
-	String title, content;
-    int hit;
-    String regDate;
-    int userNo;
-    String writer;
+	private int no;
+	private String title, content;
+	private int hit;
+	private String regDate;
+	private int userNo;
+	private String writer;
     
     //생성자
     public BoardVo() {}
